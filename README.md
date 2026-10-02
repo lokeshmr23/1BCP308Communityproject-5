@@ -96,8 +96,10 @@ The included deployment path uses **Vercel Hobby** for the static frontend, a **
 ### 3) Deploy the API on Render Free
 
 1. Push this repository to GitHub and create a Render **Web Service** from it. `render.yaml` is included; or enter the settings manually:
-   - Build command: `npm ci && npm run build`
+   - Build command: `npm ci --include=dev && npm run build`
    - Start command: `npm start`
+
+   **Why `--include=dev`:** Vite/Tailwind/PostCSS are build-time dependencies. Because Render sets `NODE_ENV=production`, plain `npm ci` can omit devDependencies and fail with `Cannot find module 'tailwindcss'`. The flag is intentional; it installs build tools during the build.
    - Instance: **Free**
    - Root directory: repository root
 2. Add environment variables in Render:
@@ -113,7 +115,7 @@ The included deployment path uses **Vercel Hobby** for the static frontend, a **
 ### 4) Deploy the frontend on Vercel Hobby
 
 1. Import the same Git repository into Vercel. Keep the project root at the repository root.
-2. Build command: `npm run build`; output directory: `client/dist`; install command: `npm ci`. `vercel.json` supplies these defaults.
+2. Build command: `npm run build`; output directory: `client/dist`; install command: `npm ci --include=dev`. `vercel.json` supplies these defaults.
 3. Add `VITE_API_URL=https://YOUR-API.onrender.com/api` as a Vercel environment variable and redeploy.
 4. Copy the final Vercel production origin into Render's `CLIENT_ORIGIN` (no trailing slash), then redeploy the API. For previews, add the exact preview origin if you want preview deployments to call the API.
 5. Try a demo sign-in, a citizen submission, official assignment/status update, public tracking and a CSV import.
