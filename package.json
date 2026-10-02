@@ -1,0 +1,43 @@
+{
+  "name": "gramsetu-digital-complaint-portal",
+  "version": "1.0.0",
+  "private": true,
+  "engines": { "node": ">=20 <23" },
+  "description": "Bilingual, mobile-first Gram Panchayat grievance portal — academic project starter",
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c green,blue \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "node server/index.js",
+    "dev:web": "vite --config client/vite.config.js --host 0.0.0.0",
+    "build": "vite build --config client/vite.config.js",
+    "start": "node server/index.js",
+    "seed": "node server/seed.js",
+    "test": "node --test server/tests/*.test.js"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "latest",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.8.1",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "csv-parse": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.468.0",
+    "multer": "^2.0.2",
+    "nodemailer": "^10.0.13",
+    "pg": "^8.13.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.0.7"
+  }
+}
